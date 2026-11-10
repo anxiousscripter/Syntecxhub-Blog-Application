@@ -10,21 +10,14 @@ import RegisterPage from './pages/public/RegisterPage';
 import PlaceholderPage from './components/PlaceholderPage';
 import ManagePostsPage from './pages/dashboard/ManagePostsPage';
 import EditPostPage from './pages/dashboard/EditPostPage';
+import HomePage from './pages/public/HomePage';
 
 function App() {
 	return (
 		<Routes>
 			{/* Public website */}
 			<Route element={<PublicLayout />}>
-				<Route
-					path="/"
-					element={
-						<PlaceholderPage
-							title="Welcome to MyBlog"
-							description="Discover articles, ideas and stories."
-						/>
-					}
-				/>
+				<Route path="/" element={<HomePage />} />
 
 				<Route
 					path="/posts/:postId"
