@@ -159,6 +159,7 @@ export const getMyPost = async (req, res) => {
 };
 
 // Create a blog post
+
 export const createPost = async (req, res) => {
 	try {
 		const { title, content, excerpt, status } = req.body;
@@ -177,6 +178,13 @@ export const createPost = async (req, res) => {
 			});
 		}
 
+		if (excerpt && excerpt.length > 300) {
+			return res.status(400).json({
+				success: false,
+				message: 'Excerpt cannot exceed 300 characters.',
+			});
+		}
+
 		if (status && !['draft', 'published'].includes(status)) {
 			return res.status(400).json({
 				success: false,
@@ -190,6 +198,7 @@ export const createPost = async (req, res) => {
 			title: title.trim(),
 			content,
 			excerpt: excerpt?.trim() || '',
+			featuredImage: req.file ? `/uploads/${req.file.filename}` : '',
 			author: req.user._id,
 			status: postStatus,
 			publishedAt: postStatus === 'published' ? new Date() : null,
@@ -290,6 +299,11 @@ export const updatePost = async (req, res) => {
 			}
 
 			post.status = status;
+		}
+
+		// Replace featured image if a new one was uploaded
+		if (req.file) {
+			post.featuredImage = `/uploads/${req.file.filename}`;
 		}
 
 		await post.save();

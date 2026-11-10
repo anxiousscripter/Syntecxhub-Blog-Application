@@ -11,6 +11,7 @@ import {
 } from '../controllers/blogController.js';
 
 import { protect } from '../middleware/authMiddleware.js';
+import { uploadFeaturedImage } from '../middleware/uploadMiddleware.js';
 
 const router = express.Router();
 
@@ -21,8 +22,8 @@ router.get('/', getPublishedPosts);
 router.get('/my-posts', protect, getMyPosts);
 router.get('/my-posts/:postId', protect, getMyPost);
 
-router.post('/', protect, createPost);
-router.put('/:postId', protect, updatePost);
+router.post('/', protect, uploadFeaturedImage, createPost);
+router.put('/:postId', protect, uploadFeaturedImage, updatePost);
 router.delete('/:postId', protect, deletePost);
 
 // Individual public post

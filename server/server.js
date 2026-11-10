@@ -24,8 +24,13 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
+// Serve uploaded images
+app.use('/uploads', express.static('uploads'));
+
 // Authentication routes
 app.use('/api/auth', authRoutes);
+
+// Blog routes
 app.use('/api/posts', blogRoutes);
 
 // Test route
