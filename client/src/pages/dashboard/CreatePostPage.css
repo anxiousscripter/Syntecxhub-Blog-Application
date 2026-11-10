@@ -1,0 +1,52 @@
+.create-post-page {
+	width: min(100% - 40px, 900px);
+	margin: 40px auto;
+}
+
+.create-post-page h1 {
+	margin-bottom: 28px;
+}
+
+.create-post-page .form-group {
+	margin-bottom: 24px;
+}
+
+.create-post-page label {
+	display: block;
+	margin-bottom: 8px;
+	font-weight: 600;
+}
+
+.create-post-page input:not([type='file']),
+.create-post-page textarea,
+.create-post-page select {
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #dcdcdc;
+	border-radius: 6px;
+	font: inherit;
+}
+
+.create-post-page textarea {
+	resize: vertical;
+}
+
+.create-post-page button[type='submit'] {
+	padding: 12px 22px;
+	border: none;
+	border-radius: 6px;
+	background: #222;
+	color: white;
+	font: inherit;
+	cursor: pointer;
+}
+
+.create-post-page button:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.form-error {
+	margin-bottom: 20px;
+	color: #c62828;
+}
