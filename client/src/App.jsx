@@ -8,6 +8,7 @@ import CreatePostPage from './pages/dashboard/CreatePostPage';
 import LoginPage from './pages/public/LoginPage';
 import RegisterPage from './pages/public/RegisterPage';
 import PlaceholderPage from './components/PlaceholderPage';
+import ManagePostsPage from './pages/dashboard/ManagePostsPage';
 
 function App() {
 	return (
@@ -43,15 +44,7 @@ function App() {
 				<Route path="/dashboard" element={<DashboardLayout />}>
 					<Route index element={<Navigate to="posts" replace />} />
 
-					<Route
-						path="posts"
-						element={
-							<PlaceholderPage
-								title="Manage blog posts"
-								description="View and manage your published posts and drafts."
-							/>
-						}
-					/>
+					<Route path="posts" element={<ManagePostsPage />} />
 
 					<Route path="create" element={<CreatePostPage />} />
 
