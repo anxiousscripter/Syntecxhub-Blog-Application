@@ -3,7 +3,10 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import PublicLayout from './layouts/PublicLayout';
 import DashboardLayout from './layouts/DashboardLayout';
 
+import ProtectedRoute from './components/ProtectedRoute';
 import CreatePostPage from './pages/dashboard/CreatePostPage';
+import LoginPage from './pages/public/LoginPage';
+import RegisterPage from './pages/public/RegisterPage';
 import PlaceholderPage from './components/PlaceholderPage';
 
 function App() {
@@ -31,55 +34,39 @@ function App() {
 					}
 				/>
 
-				<Route
-					path="/login"
-					element={
-						<PlaceholderPage
-							title="Login"
-							description="Sign in to your account."
-						/>
-					}
-				/>
-
-				<Route
-					path="/register"
-					element={
-						<PlaceholderPage
-							title="Create an account"
-							description="Register to start writing blog posts."
-						/>
-					}
-				/>
+				<Route path="/login" element={<LoginPage />} />
+				<Route path="/register" element={<RegisterPage />} />
 			</Route>
 
-			{/* Dashboard */}
-			<Route path="/dashboard" element={<DashboardLayout />}>
-				<Route index element={<Navigate to="posts" replace />} />
+			{/* Protected dashboard */}
+			<Route element={<ProtectedRoute />}>
+				<Route path="/dashboard" element={<DashboardLayout />}>
+					<Route index element={<Navigate to="posts" replace />} />
 
-				<Route
-					path="posts"
-					element={
-						<PlaceholderPage
-							title="Manage blog posts"
-							description="View and manage your published posts and drafts."
-						/>
-					}
-				/>
+					<Route
+						path="posts"
+						element={
+							<PlaceholderPage
+								title="Manage blog posts"
+								description="View and manage your published posts and drafts."
+							/>
+						}
+					/>
 
-				<Route path="create" element={<CreatePostPage />} />
+					<Route path="create" element={<CreatePostPage />} />
 
-				<Route
-					path="posts/:postId/edit"
-					element={
-						<PlaceholderPage
-							title="Edit blog post"
-							description="Edit an existing blog post."
-						/>
-					}
-				/>
+					<Route
+						path="posts/:postId/edit"
+						element={
+							<PlaceholderPage
+								title="Edit blog post"
+								description="Edit an existing blog post."
+							/>
+						}
+					/>
+				</Route>
 			</Route>
 
-			{/* Unknown routes */}
 			<Route
 				path="*"
 				element={
