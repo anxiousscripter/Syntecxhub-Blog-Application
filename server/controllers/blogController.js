@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import BlogPost from '../models/BlogPost.js';
+import sanitizeContent from '../utils/sanitizeContent.js';
 
 // Check whether the user owns a post or is an admin
 const canManagePost = (post, user) => {
@@ -196,7 +197,7 @@ export const createPost = async (req, res) => {
 
 		const post = await BlogPost.create({
 			title: title.trim(),
-			content,
+			content: sanitizeContent(content),
 			excerpt: excerpt?.trim() || '',
 			featuredImage: req.file ? `/uploads/${req.file.filename}` : '',
 			author: req.user._id,
@@ -268,7 +269,7 @@ export const updatePost = async (req, res) => {
 				});
 			}
 
-			post.content = content;
+			post.content = sanitizeContent(content);
 		}
 
 		if (excerpt !== undefined) {
