@@ -11,6 +11,7 @@ import PlaceholderPage from './components/PlaceholderPage';
 import ManagePostsPage from './pages/dashboard/ManagePostsPage';
 import EditPostPage from './pages/dashboard/EditPostPage';
 import HomePage from './pages/public/HomePage';
+import PostPage from './pages/public/PostPage';
 
 function App() {
 	return (
@@ -19,15 +20,7 @@ function App() {
 			<Route element={<PublicLayout />}>
 				<Route path="/" element={<HomePage />} />
 
-				<Route
-					path="/posts/:postId"
-					element={
-						<PlaceholderPage
-							title="Blog post"
-							description="The individual blog post will appear here."
-						/>
-					}
-				/>
+				<Route path="/posts/:postId" element={<PostPage />} />
 
 				<Route path="/login" element={<LoginPage />} />
 				<Route path="/register" element={<RegisterPage />} />
