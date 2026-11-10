@@ -9,6 +9,7 @@ import LoginPage from './pages/public/LoginPage';
 import RegisterPage from './pages/public/RegisterPage';
 import PlaceholderPage from './components/PlaceholderPage';
 import ManagePostsPage from './pages/dashboard/ManagePostsPage';
+import EditPostPage from './pages/dashboard/EditPostPage';
 
 function App() {
 	return (
@@ -50,12 +51,7 @@ function App() {
 
 					<Route
 						path="posts/:postId/edit"
-						element={
-							<PlaceholderPage
-								title="Edit blog post"
-								description="Edit an existing blog post."
-							/>
-						}
+						element={<EditPostPage />}
 					/>
 				</Route>
 			</Route>

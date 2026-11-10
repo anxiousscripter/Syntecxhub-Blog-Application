@@ -132,7 +132,7 @@ function ManagePostsPage() {
 									<td>
 										<div className="post-actions">
 											<Link
-												to={`/dashboard/edit/${post._id}`}
+												to={`/dashboard/posts/${post._id}/edit`}
 												className="edit-post-button">
 												Edit
 											</Link>
